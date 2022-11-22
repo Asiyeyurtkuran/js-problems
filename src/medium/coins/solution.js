@@ -1,30 +1,29 @@
-let arrayOfdenoms = [];
+// const arrayOfDenoms = [];
 let number = 0;
 
-function initiate(number) {
-  number = number;
-  findDenomination(number);
-  return occurances(arrayOfdenoms);
+function initiate(num) {
+  number = num;
+  const result = findDenomination(num);
+  return occurances(result);
 }
 
-function findDenomination(number) {
-  let denominations = [1, 5, 10, 25, 100];
-  let n = denominations.length;
+function findDenomination(num) {
+  const denominations = [1, 5, 10, 25, 100];
+  const arrayOfDenoms = [];
 
-  for (let i = n - 1; i >= 0; i--) {
-    while (number >= denominations[i]) {
-      number -= denominations[i];
-      arrayOfdenoms.push(denominations[i]);
+  for (let i = denominations.length - 1; i >= 0; i--) {
+    while (num >= denominations[i]) {
+      num -= denominations[i];
+      arrayOfDenoms.push(denominations[i]);
     }
   }
 
-  return arrayOfdenoms;
+  return arrayOfDenoms;
 }
 
-function occurances(arrayOfdenoms) {
-  const denoms = arrayOfdenoms;
+function occurances(arrayOfDenoms) {
+  const denoms = arrayOfDenoms;
   // console.log("Value of denoms const: ", denoms);
-  let result;
 
   let hundreds = 0;
   let twentyfives = 0;
@@ -44,8 +43,27 @@ function occurances(arrayOfdenoms) {
       ones += 1;
     }
   });
-  result = `There are: ${hundreds} x 100, ${twentyfives} x 25, ${tens} x 10, ${fives} x 5, ${ones} x 1.`;
+
+  let result = "Smallest number of denominations: ";
+
+  if (hundreds > 0) {
+    result += `${hundreds} x 100, `;
+  }
+  if (twentyfives > 0) {
+    result += `${twentyfives} x 25, `;
+  }
+  if (tens > 0) {
+    result += `${tens} x 10, `;
+  }
+  if (fives > 0) {
+    result += `${fives} x 5, `;
+  }
+  if (ones > 0) {
+    result += `${ones} x 1.`;
+  }
+
+  // const result2 = `There are: ${hundreds} x 100, ${twentyfives} x 25, ${tens} x 10, ${fives} x 5, ${ones} x 1`;
   return result;
 }
 
-console.log(initiate(2427));
+console.log(initiate(34));
